@@ -247,7 +247,26 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckoutSuccess, className })
                                     ) : (
                                         <div className="flex items-center gap-1">
                                             <Button variant="outline" size="icon" className="h-6 w-6" onClick={() => decreaseQty(item.id)}><Minus className="h-3 w-3" /></Button>
-                                            <span className="font-bold w-6 text-center text-xs">{item.qty}</span>
+                                            <input 
+                                                type="number"
+                                                inputMode="numeric"
+                                                value={item.qty === 0 ? '' : item.qty} 
+                                                onChange={(e) => {
+                                                    // Ambil nilai integer dari ketikan user
+                                                    const val = parseInt(e.target.value, 10);
+                                                    // Gunakan fungsi updateQty yang sudah ada di store Boss
+                                                    updateQty(item.id, isNaN(val) ? 0 : val);
+                                                }}
+                                                onBlur={(e) => {
+                                                    // Jika user meninggalkan input dalam keadaan kosong atau 0, 
+                                                    // otomatis kembalikan ke angka 1 agar tidak error
+                                                    if (!e.target.value || parseInt(e.target.value, 10) <= 0) {
+                                                        updateQty(item.id, 1); 
+                                                    }
+                                                }}
+                                                // Kelas Tailwind di bawah ini berfungsi melucuti desain input agar tampak seperti span
+                                                className="font-bold w-8 text-center text-xs bg-transparent border-none p-0 focus:outline-none focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none appearance-none"
+                                            />
                                             <Button variant="outline" size="icon" className="h-6 w-6" onClick={() => addItem(item)}><Plus className="h-3 w-3" /></Button>
                                         </div>
                                     )}
@@ -331,7 +350,26 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckoutSuccess, className })
                             ) : (
                                 <div className="flex items-center gap-1">
                                     <Button variant="outline" size="icon" className="h-6 w-6" onClick={() => decreaseQty(item.id)}><Minus className="h-3 w-3" /></Button>
-                                    <span className="font-bold w-6 text-center text-xs">{item.qty}</span>
+                                    <input 
+                                        type="number"
+                                        inputMode="numeric"
+                                        value={item.qty === 0 ? '' : item.qty} 
+                                        onChange={(e) => {
+                                            // Ambil nilai integer dari ketikan user
+                                            const val = parseInt(e.target.value, 10);
+                                            // Gunakan fungsi updateQty yang sudah ada di store Boss
+                                            updateQty(item.id, isNaN(val) ? 0 : val);
+                                        }}
+                                        onBlur={(e) => {
+                                            // Jika user meninggalkan input dalam keadaan kosong atau 0, 
+                                            // otomatis kembalikan ke angka 1 agar tidak error
+                                            if (!e.target.value || parseInt(e.target.value, 10) <= 0) {
+                                                updateQty(item.id, 1); 
+                                            }
+                                        }}
+                                        // Kelas Tailwind di bawah ini berfungsi melucuti desain input agar tampak seperti span
+                                        className="font-bold w-8 text-center text-xs bg-transparent border-none p-0 focus:outline-none focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none appearance-none"
+                                    />
                                     <Button variant="outline" size="icon" className="h-6 w-6" onClick={() => addItem(item)}><Plus className="h-3 w-3" /></Button>
                                 </div>
                             )}
