@@ -160,7 +160,7 @@ export default function Home() {
             ) : products.length > 0 ? (
               <>
                 {/* GRID PRODUK */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 flex-1">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 flex-1 items-start">
                   {products.map((product) => (
                     <ProductCard key={product.id} product={product} onAddToCart={addItem} />
                   ))}

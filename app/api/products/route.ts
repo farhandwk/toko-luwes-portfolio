@@ -22,7 +22,7 @@ export async function GET(req: Request) {
     const to = from + limit - 1;
 
     // Ambil id (angka), name, price, stock, is_decimal, dan relasi
-    let query = supabase
+    let query = supabaseAdmin
       .from('products')
       .select('*, units(name), categories!inner(name)', { count: 'exact' });
 

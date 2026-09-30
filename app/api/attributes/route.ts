@@ -9,8 +9,8 @@ export async function GET() {
   try {
     // Menjalankan kueri bersamaan (Parallel)
     const [categoriesRes, unitsRes] = await Promise.all([
-      supabase.from('categories').select('id, name').order('name', { ascending: true }),
-      supabase.from('units').select('id, name').order('name', { ascending: true })
+      supabaseAdmin.from('categories').select('id, name').order('name', { ascending: true }),
+      supabaseAdmin.from('units').select('id, name').order('name', { ascending: true })
     ]);
 
     if (categoriesRes.error) throw categoriesRes.error;

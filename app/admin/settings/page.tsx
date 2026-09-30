@@ -26,6 +26,7 @@ export default function SettingsPage() {
       // Cukup satu kali fetch karena API sudah mengirimkan paket lengkap
       const res = await fetch('/api/attributes');
       const data = await res.json();
+      console.log("Data dari API:", data);
 
       if (res.ok) {
         // Ambil array dari dalam properti objek

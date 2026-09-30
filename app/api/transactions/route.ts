@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 export async function GET(req: Request) {
   try {
@@ -17,7 +18,7 @@ export async function GET(req: Request) {
     const to = from + limit - 1;
 
     // 2. Bangun Kueri (Pilih kolom snake_case)
-    let query = supabase
+    let query = supabaseAdmin
       .from('transactions')
       .select('id, date, items, total_price, payment_method, cash_amount, change_amount, inserted_at', { count: 'exact' });
 

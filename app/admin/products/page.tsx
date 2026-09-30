@@ -110,7 +110,7 @@ export default function AdminProducts() {
   const openAddModal = () => {
       setIsEditingMode(false);
       setFormData({ 
-        name: "", price: 0, stock: 0, category_id: "", unit_id: 1, image: "", is_decimal: false 
+        name: "", price: "", stock: "", category_id: "", unit_id: 1, image: "", is_decimal: false 
       });
       setIsEditOpen(true);
   };
@@ -331,11 +331,11 @@ export default function AdminProducts() {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Harga Jual (Rp) <span className="text-red-500">*</span></Label>
-                <Input type="number" value={formData.price} onChange={e => setFormData({...formData, price: Number(e.target.value)})} />
+                <Input type="number" placeholder="0" value={formData.price ?? ''} onChange={e => setFormData({...formData, price: e.target.value === '' ? '' : Number(e.target.value)})} />
               </div>
               <div className="grid gap-2">
                 <Label>Stok</Label>
-                <Input type="number" value={formData.stock} onChange={e => setFormData({...formData, stock: Number(e.target.value)})} disabled={isEditingMode} />
+                <Input type="number" value={formData.stock} placeholder="0" onChange={e => setFormData({...formData, stock: e.target.value === '' ? '' : Number(e.target.value)})} disabled={isEditingMode} />
               </div>
             </div>
 
